@@ -1,0 +1,50 @@
+%%%%%%% Predator prey for 3 species %%%%%%%%%%%%%%%%%%
+
+import matplotlib.pyplot as plt
+import math as m
+
+def predator_prey_eq3B(x,y,z,w,h,n,a,b,c,d,e,f,g,l,m):
+    x_liste=[]
+    y_liste=[]
+    z_liste=[]
+    w_liste=[]
+    for k in range(1,n+1):
+        w_liste.append(w)
+        z_liste.append(z)
+        y_liste.append(y)
+        x_liste.append(x)
+        y=y+h*(a*y-b*y*z+e*y*w)
+        z=z+h*(c*y*z-d*z-f*z*w)
+        w=w+h*(-l*y*w+g*w+m*z*w)
+        x=x+h
+        k=k+1
+    return plt.plot(x_liste, y_liste), plt.plot(x_liste, z_liste), plt.plot(x_liste, w_liste), plt.legend(["y", "z", "w"])
+
+predator_prey_eq3B(0,1,1,1,0.01,3000,1.1,0.4,0.1,0.4,0.4,0.1,1.2,0.4,0.2)
+
+
+%%%%%%% Logistic equation mixed with predator prey for 3 species %%%%%%%%%%%%%%%%%%
+
+import matplotlib.pyplot as plt
+import math as m
+
+def predator_prey_eq3BNL(x,y,z,w,h,n,a,b,c,d,e,f,g,l,m):
+    x_liste=[]
+    y_liste=[]
+    z_liste=[]
+    w_liste=[]
+    for k in range(1,n+1):
+        w_liste.append(w)
+        z_liste.append(z)
+        y_liste.append(y)
+        x_liste.append(x)
+        y=y+h*(a*y*(1-y/20)-b*y*z+e*y*w)
+        z=z+h*(c*y*z-d*z-f*z*w)
+        w=w+h*(-l*y*w+g*w*(1-w/20)+m*z*w)
+        x=x+h
+        k=k+1
+    return plt.plot(x_liste, y_liste), plt.plot(x_liste, z_liste), plt.plot(x_liste, w_liste), plt.legend(["y", "z", "w"])
+    
+    predator_prey_eq3BNL(0,1,1,1,0.01,10000,1.1,0.4,0.1,0.4,0.4,0.1,1.1,0.4,.4)
+    
+    %%%%%%% Interestingly, the three species respective populations approach a finite constant value. %%%%%%%%%%%%%%%%%
