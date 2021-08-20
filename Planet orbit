@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import math as m
+
+def Orbit22(t,theta,v,r,L,h,n,G,M):
+    t_liste=[]
+    v_liste=[]
+    r_liste=[]
+    x_liste=[]
+    y_liste=[]
+    theta_liste=[]
+    for k in range(1,n+1):
+        t_liste.append(t)
+        r_liste.append(r)
+        v_liste.append(v)
+        theta=theta+h*(L/r**2)
+        x=r*m.cos(theta)
+        y=r*m.sin(theta)
+        x_liste.append(x)
+        y_liste.append(y)
+        theta_liste.append(theta)
+        r=r+h*v
+        v=v+h*(-G*M/(r**2)+(L**2/r**3))
+        t=t+h
+        k=k+1
+    return plt.plot(x_liste, y_liste)
+
+
+Orbit22(0,0,0,1,0.5,0.001,8000,1,1)
