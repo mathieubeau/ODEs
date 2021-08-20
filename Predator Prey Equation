@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+import math as m
+
+def predator_prey_eq(x,y,z,h,n,a,b,c,d):
+    x_liste=[]
+    y_liste=[]
+    z_liste=[]
+    for k in range(1,n+1):
+        z_liste.append(z)
+        y_liste.append(y)
+        x_liste.append(x)
+        y=y+h*(a*y-b*y*z)
+        z=z+h*(c*y*z-d*z)
+        x=x+h
+        k=k+1
+    return plt.plot(x_liste, y_liste), plt.plot(x_liste, z_liste), plt.legend(["Prey", "Predator"])
+
+predator_prey_eq(0,10,10,0.1,1000,1.1,0.4,0.1,0.4)
